@@ -2,14 +2,14 @@
 // The function should return the power of the base to the exponent.
 // This function should mimic the functionality of Math.pow()  - do not worry about negative bases and exponents.
 
-function power(base, exponent) {
+function power(base: number, exponent: number) {
   if (exponent === 0) return 1;
   return base * power(base, exponent - 1);
 }
 
 console.log(power(2, 10));
 
-function factorial(num) {
+function factorial(num: number) {
   if (num === 0) return 1;
   return num * factorial(num - 1);
 }
@@ -18,7 +18,7 @@ console.log(factorial(5));
 
 // Write a function called productOfArray which takes in an array of numbers and returns the product of them all.
 
-function productOfArray(arr) {
+function productOfArray(arr: number[]) {
   if (arr.length === 1) return arr[0];
   return arr.pop() * productOfArray(arr);
 }
@@ -28,7 +28,7 @@ console.log(productOfArray([1, 2, 3, 10])); // 60
 
 // Write a function called recursiveRange which accepts a number and adds up all the numbers from 0 to the number passed to the function
 
-function recursiveRange(num) {
+function recursiveRange(num: number) {
   if (num === 0) return 0;
   return num + recursiveRange(num - 1);
 }
@@ -38,7 +38,7 @@ console.log(recursiveRange(10)); // 55
 
 // Fibonacci
 
-function fib(num) {
+function fib(num: number) {
   if (num === 0) return 0;
   if (num === 1) return 1;
   return fib(num - 1) + fib(num - 2);
@@ -47,7 +47,7 @@ console.log(fib(20));
 
 // Write a recursive function called reverse which accepts a string and returns a new string in reverse.
 
-function reverse(str) {
+function reverse(str: string) {
   if (str.length <= 1) return str;
   return str.slice(-1) + reverse(str.slice(0, -1));
 }
@@ -57,7 +57,7 @@ console.log(reverse('rithmschool')); // 'loohcsmhtir'
 
 // Write a recursive function called isPalindrome which returns true if the string passed to it is a palindrome (reads the same forward and backward). Otherwise it returns false.
 
-function isPalindrome(str) {
+function isPalindrome(str: string) {
   if (str.length === 0) return true;
   return str[0] === str.slice(-1) ? isPalindrome(str.slice(1, -1)) : false;
 }
@@ -72,7 +72,7 @@ console.log(isPalindrome('amanaplanacanalpandemonium')); // false
 // The function returns true if a single value in the array returns true when passed to the callback.
 // Otherwise it returns false.
 
-function someRecursive(arr, callback) {
+function someRecursive(arr: any[], callback: (any) => boolean) {
   if (arr.length === 0) return false;
   return callback(arr[0]) ? true : someRecursive(arr.slice(1), callback);
 }
@@ -87,7 +87,7 @@ console.log(someRecursive([4, 6, 8], val => val > 10)); // false
 
 // Write a recursive function called flatten which accepts an array of arrays and returns a new array with all values flattened.
 
-function flatten(arr) {
+function flatten(arr: any[]) {
   const flatArray = [];
 
   arr.forEach(item => {
@@ -110,7 +110,7 @@ console.log(flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]])); // [1,2,3]
 
 // Write a recursive function called capitalizeFirst. Given an array of strings, capitalize the first letter of each string in the array.
 
-function capitalizeFirst(arr) {
+function capitalizeFirst(arr: string[]) {
   const result = [];
 
   const capitalize = arr => {
@@ -131,7 +131,7 @@ console.log(capitalizeFirst(['car', 'taco', 'banana'])); // ['Car','Taco','Banan
 // Write a recursive function called nestedEvenSum.
 // Return the sum of all even numbers in an object which may contain nested objects.
 
-function nestedEvenSum(obj) {
+function nestedEvenSum(obj: {}) {
   let sum = 0;
 
   const isEvenNumber = value => typeof value === 'number' && value % 2 === 0;
@@ -139,7 +139,7 @@ function nestedEvenSum(obj) {
   const getNestedEvenSum = obj => {
     Object.values(obj).forEach(value => {
       if (isEvenNumber(value)) {
-        sum += value;
+        sum += value as number;
       } else if (typeof value === 'object' && value !== null) {
         getNestedEvenSum(value);
       }
@@ -177,7 +177,7 @@ console.log(nestedEvenSum(obj2)); // 10
 // Write a recursive function called capitalizeWords.
 // Given an array of words, return a new array containing each word capitalized.
 
-function capitalizeWords(arr) {
+function capitalizeWords(arr: string[]) {
   const result = [];
 
   const capitalize = array => {
@@ -194,7 +194,7 @@ console.log(capitalizeWords(words)); // ['I', 'AM', 'LEARNING', 'RECURSION']
 
 // Write a function called stringifyNumbers which takes in an object and finds all of the values which are numbers and converts them to strings.
 
-function stringifyNumbers(obj) {
+function stringifyNumbers(obj: {}) {
   return Object.entries(obj).reduce((newObj, [key, value]) => {
     if (typeof value === 'number') {
       newObj[key] = value.toString();
@@ -241,15 +241,15 @@ console.log(stringifyNumbers(obj));
 //   return strings;
 // }
 
-function collectStrings(obj) {
-  return Object.values(obj).reduce((result, value) => {
+function collectStrings(obj: {}): string[] {
+  return Object.values(obj).reduce((result: string[], value) => {
     if (typeof value === 'string') {
       result.push(value);
     } else if (typeof value === 'object') {
       result.push(...collectStrings(value));
     }
     return result;
-  }, []);
+  }, []) as string[];
 }
 
 const object = {
