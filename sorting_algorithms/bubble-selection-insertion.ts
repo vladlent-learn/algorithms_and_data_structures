@@ -1,6 +1,4 @@
-const arr = [999, -1, -5, -3, 0, 1, 2, 6, 7456, 1233, 45];
-
-const getArray = () => arr.slice();
+import { getTestArray } from '../utils';
 
 function bubbleSort(arr: number[]) {
   let noSwap;
@@ -26,7 +24,7 @@ function bubbleSort(arr: number[]) {
   return arr;
 }
 
-console.log(bubbleSort(getArray()), 'bubble sort');
+console.log(bubbleSort(getTestArray()), 'bubble sort');
 
 function selectionSort(arr: number[]) {
   let noSwap;
@@ -51,7 +49,7 @@ function selectionSort(arr: number[]) {
   return arr;
 }
 
-console.log(selectionSort(getArray()), 'selection sort');
+console.log(selectionSort(getTestArray()), 'selection sort');
 
 function insertionSort(arr: number[]) {
   for (let i = 1; i < arr.length; i++) {
@@ -69,9 +67,4 @@ function insertionSort(arr: number[]) {
   return arr;
 }
 
-console.log(insertionSort(getArray()), 'insertion sort');
-
-function merge(arr1, arr2) {}
-
-console.log(merge([1, 3, 5, 7], [-10, -5, -3, -1]));
-console.log(merge([1, 10, 50], [2, 14, 99, 100]));
+console.log(insertionSort(getTestArray()), 'insertion sort');
