@@ -1,4 +1,4 @@
-import { getTestArray } from '../utils';
+import { getTestArray, swap } from '../utils';
 
 function bubbleSort(arr: number[]) {
   let noSwap;
@@ -43,7 +43,7 @@ function selectionSort(arr: number[]) {
     }
 
     if (!noSwap) {
-      [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+      swap(arr, i, minIndex);
     }
   }
   return arr;

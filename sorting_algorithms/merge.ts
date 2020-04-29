@@ -29,11 +29,11 @@ function merge(arr1: number[], arr2: number[]): number[] {
 
 console.log('merge sort');
 
-function mergeSort(arr: number[]): number[] {
+export function mergeSort(arr: number[]): number[] {
   if (arr.length <= 1) return arr;
 
   const middleIndex = Math.floor(arr.length / 2);
   return merge(mergeSort(arr.slice(0, middleIndex)), mergeSort(arr.slice(middleIndex)));
 }
 
-console.log(mergeSort(getTestArray()));
+// console.log(mergeSort(getTestArray()));
