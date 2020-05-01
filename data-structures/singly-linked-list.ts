@@ -83,6 +83,14 @@ export class SinglyLinkedList<T> {
     }
     return node;
   }
+
+  set(index: number, value: T): boolean {
+    const node = this.get(index);
+    if (!node) return false;
+
+    node.value = value;
+    return true;
+  }
 }
 
 const list = new SinglyLinkedList<any>();
@@ -90,3 +98,4 @@ const list = new SinglyLinkedList<any>();
 console.log(list);
 console.log(list.unshift(0).push(1).push(2));
 console.log(list.get(1));
+console.log(list.set(1, 'Hello'));
