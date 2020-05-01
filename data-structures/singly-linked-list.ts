@@ -23,34 +23,70 @@ export class SinglyLinkedList<T> {
     return this;
   }
 
-  pop(): T {
-    if (this.length === 0 || !this.head) {
-      return undefined;
-    }
+  pop(): Node<T> {
+    if (this.length === 0 || !this.head) return undefined;
 
     let currentNode = this.head;
-    let prevToLastNode: Node<T>;
-    let lastNode: Node<T>;
+    let newTail = currentNode;
 
-    while (currentNode) {
-      if (!currentNode.next) {
-        lastNode = currentNode;
-        break;
-      }
-
-      prevToLastNode = currentNode;
+    while (currentNode.next) {
+      newTail = currentNode;
       currentNode = currentNode.next;
     }
 
-    prevToLastNode.next = null;
-    this.tail = prevToLastNode;
+    this.tail = newTail;
+    this.tail.next = null;
     this.length--;
-    return lastNode.value;
+
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+
+    return currentNode;
+  }
+
+  unshift(value: T): this {
+    const currentHead = this.head;
+    this.head = new Node<T>(value);
+    this.head.next = currentHead;
+
+    if (!this.tail) {
+      this.tail = this.head;
+    }
+
+    this.length++;
+
+    return this;
+  }
+
+  shift(): Node<T> {
+    if (this.length === 0 || !this.head) return undefined;
+
+    const currentHead = this.head;
+    this.head = currentHead.next;
+    this.length--;
+
+    if (this.length === 0) {
+      this.tail = null;
+    }
+
+    return currentHead;
+  }
+
+  get(index: number): Node<T> {
+    if (index < 0 || index >= this.length) return undefined;
+
+    let node = this.head;
+    for (let i = 1; i <= index; i++) {
+      node = node.next;
+    }
+    return node;
   }
 }
 
 const list = new SinglyLinkedList<any>();
-list.push('1').push(2).push(23);
-
+// list.push('1').push(2);
 console.log(list);
-console.log(list.pop());
+console.log(list.unshift(0).push(1).push(2));
+console.log(list.get(1));
