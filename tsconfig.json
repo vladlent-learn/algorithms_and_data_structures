@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "lib": ["ESNext", "DOM"],
-    "types": ["node"]
-  }
+    "lib": ["ESNext"],
+    "types": ["node"],
+    "experimentalDecorators": true
+  },
+  "exclude": ["node_modules"]
 }
