@@ -3,7 +3,7 @@ export class Node<T> {
   constructor(public value: T) {}
 }
 
-export class SinglyLinkedList<T> {
+export class LinkedList<T> {
   head: Node<T> = null;
   tail: Node<T> = null;
   length = 0;
@@ -121,11 +121,4 @@ export class SinglyLinkedList<T> {
   }
 }
 
-const list = new SinglyLinkedList<any>();
-// list.push('1').push(2);
-console.log(list);
-console.log(list.unshift(0).push(1).push(3));
-console.log(list.insert(3, 2));
-console.log(list);
-console.log(list.remove(1));
-console.log(list);
+const list = new LinkedList<any>();
