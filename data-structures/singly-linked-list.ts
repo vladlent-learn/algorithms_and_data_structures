@@ -1,4 +1,4 @@
-class Node<T> {
+export class Node<T> {
   next = null;
   constructor(public value: T) {}
 }
