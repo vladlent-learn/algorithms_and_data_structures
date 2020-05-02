@@ -91,11 +91,41 @@ export class SinglyLinkedList<T> {
     node.value = value;
     return true;
   }
+
+  insert(index: number, value: T): boolean {
+    if (index < 0 || index > this.length) return false;
+    if (index === this.length) return !!this.push(value);
+    if (index === 0) return !!this.unshift(value);
+
+    const newNode = new Node(value);
+    const prevNode = this.get(index - 1);
+
+    newNode.next = prevNode.next;
+    prevNode.next = newNode;
+    this.length++;
+
+    return true;
+  }
+
+  remove(index: number): Node<T> {
+    if (index < 0 || index > this.length) return undefined;
+    if (index === this.length - 1) return this.pop();
+    if (index === 0) return this.shift();
+
+    const prevNode = this.get(index - 1);
+    const nodeToRemove = prevNode.next;
+    prevNode.next = nodeToRemove.next;
+
+    this.length--;
+    return nodeToRemove;
+  }
 }
 
 const list = new SinglyLinkedList<any>();
 // list.push('1').push(2);
 console.log(list);
-console.log(list.unshift(0).push(1).push(2));
-console.log(list.get(1));
-console.log(list.set(1, 'Hello'));
+console.log(list.unshift(0).push(1).push(3));
+console.log(list.insert(3, 2));
+console.log(list);
+console.log(list.remove(1));
+console.log(list);
