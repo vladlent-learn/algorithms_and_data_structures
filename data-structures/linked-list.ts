@@ -3,7 +3,7 @@ export class Node<T> {
   constructor(public value: T) {}
 }
 
-export class LinkedList<T> {
+export class LinkedList<T> implements Iterable<Node<T>> {
   head: Node<T> = null;
   tail: Node<T> = null;
   length = 0;
@@ -154,7 +154,7 @@ export class LinkedList<T> {
     }
   }
 
-  *[Symbol.iterator]() {
+  *[Symbol.iterator](): Iterator<Node<T>> {
     let current = this.head;
 
     while (current) {
