@@ -127,6 +127,39 @@ export class LinkedList<T> {
     this.length--;
     return nodeToRemove;
   }
-}
 
-const list = new LinkedList<any>();
+  reverse(): this {
+    this.tail = this.head;
+
+    let prevNode = this.head;
+    let currentNode = this.head.next;
+    let oldNextNode;
+
+    while (currentNode) {
+      oldNextNode = currentNode.next;
+      currentNode.next = prevNode;
+      prevNode = currentNode;
+      currentNode = oldNextNode;
+    }
+
+    this.head = prevNode;
+    this.tail.next = null;
+
+    return this;
+  }
+
+  forEach(callback: (node: Node<T>) => void): void {
+    for (let n of this) {
+      callback(n);
+    }
+  }
+
+  *[Symbol.iterator]() {
+    let current = this.head;
+
+    while (current) {
+      yield current;
+      current = current.next;
+    }
+  }
+}
