@@ -18,9 +18,10 @@ describe('LinkedList', () => {
   const firstValue = '123';
   const secondValue = ['big', 'array'];
   const thirdValue = { firstValue, secondValue };
+  const addAllValuesToList = () => list.addAll([firstValue, secondValue, thirdValue]);
 
   beforeEach(() => {
-    list = new LinkedList();
+    list = new LinkedList<any>();
   });
 
   it('should create', () => {
@@ -61,6 +62,19 @@ describe('LinkedList', () => {
     });
   });
 
+  describe('addAll()', () => {
+    it('should add all values from iterable to the end of the list', () => {
+      expect(list.length).toEqual(0);
+
+      list.addAll([firstValue, secondValue, thirdValue]);
+
+      expect(list.length).toEqual(3);
+      expect(list.head.value).toEqual(firstValue);
+      expect(list.tail.value).toEqual(thirdValue);
+      expect(list.get(1).value).toEqual(secondValue);
+    });
+  });
+
   describe('pop()', () => {
     it('should remove last element from the list and return it', () => {
       expect(list.length).toEqual(0);
@@ -81,7 +95,7 @@ describe('LinkedList', () => {
   });
 
   describe('unshift()', () => {
-    it('should take value and make it the new head', () => {
+    it('should add new value to the start of the list and make it the new head', () => {
       expect(list.length).toEqual(0);
       expect(list.unshift(firstValue)).toEqual(list);
       expect(list.head.value).toEqual(firstValue);
@@ -94,6 +108,63 @@ describe('LinkedList', () => {
       expect(list.head.next.value).toEqual(firstValue);
       expect(list.tail.value).toEqual(firstValue);
       expect(list.length).toEqual(2);
+    });
+  });
+
+  describe('shift()', () => {
+    it('should remove first node from the list and return it', () => {
+      expect(list.length).toEqual(0);
+
+      list.push(firstValue).push(secondValue).push(thirdValue);
+
+      expect(list.head.value).toEqual(firstValue);
+      expect(list.length).toEqual(3);
+
+      expect(list.shift().value).toEqual(firstValue);
+      expect(list.head.value).toEqual(secondValue);
+      expect(list.length).toEqual(2);
+    });
+
+    it('should return undefind if the list is empty', () => {
+      expect(list.length).toEqual(0);
+      expect(list.shift()).toEqual(undefined);
+    });
+
+    it('should make list empty if list has only 1 item', () => {
+      expect(list.length).toEqual(0);
+
+      list.unshift(firstValue);
+
+      expect(list.length).toEqual(1);
+      expect(list.head.value).toEqual(firstValue);
+      expect(list.head).toEqual(list.tail);
+      expect(list.head.next).toEqual(null);
+
+      list.shift();
+
+      expect(list.length).toEqual(0);
+      expect(list.head).toEqual(null);
+      expect(list.tail).toEqual(null);
+    });
+  });
+
+  describe('get()', () => {
+    it('should return item at provided index', () => {
+      expect(list.length).toEqual(0);
+      addAllValuesToList();
+      expect(list.length).toEqual(3);
+
+      expect(list.get(0)).toEqual(list.head);
+      expect(list.get(2)).toEqual(list.tail);
+      expect(list.get(1).value).toEqual(secondValue);
+    });
+
+    it('should return undefined if provided index does`nt exist', () => {
+      expect(list.length).toEqual(0);
+      expect(list.get(2)).toEqual(undefined);
+      addAllValuesToList();
+      expect(list.get(12344123)).toEqual(undefined);
+      expect(list.get(-5)).toEqual(undefined);
     });
   });
 });

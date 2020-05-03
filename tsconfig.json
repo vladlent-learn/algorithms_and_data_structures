@@ -3,7 +3,8 @@
     "allowSyntheticDefaultImports": true,
     "lib": ["ESNext"],
     "types": ["node"],
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "target": "ESNext"
   },
   "exclude": ["node_modules"]
 }

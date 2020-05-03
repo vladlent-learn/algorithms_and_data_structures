@@ -7,7 +7,15 @@ export class LinkedList<T> {
   head: Node<T> = null;
   tail: Node<T> = null;
   length = 0;
+
   constructor() {}
+
+  addAll(iterable: Iterable<T>): this {
+    for (let item of iterable) {
+      this.push(item);
+    }
+    return this;
+  }
 
   push(value: T): this {
     const node = new Node(value);
