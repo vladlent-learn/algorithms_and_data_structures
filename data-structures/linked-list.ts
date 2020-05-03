@@ -1,5 +1,5 @@
 export class Node<T> {
-  next = null;
+  next: Node<T> = null;
   constructor(public value: T) {}
 }
 
