@@ -268,14 +268,3 @@ describe('LinkedList', () => {
     });
   });
 });
-
-//  [ Node({ value: '123', next: Node({ value: [ 'big', 'array' ], next: Node({ value: Object({ firstValue: '1
-// 23', secondValue: [ 'big', 'array' ] }), next: null }) }) }), Node({ value: [ 'big', 'array' ], next: Node({ val
-// ue: Object({ firstValue: '123', secondValue: [ 'big', 'array' ] }), next: null }) }), Node({ value: Object({ fir
-// stValue: '123', secondValue: [ 'big', 'array' ] }), next: null }) ]
-
-//  [ Node({ value: '123', next: Node({ value: [ 'big', 'array' ], next: Node({ value: Object({ firstValue: '1
-// 23', secondValue: [ 'big', 'array' ] }), next: null }) }) }) ],
-//       [ Node({ value: [ 'big', 'array' ], next: Node({ value: Object({ firstValue: '123', secondValue: [ 'big',
-// 'array' ] }), next: null }) }) ],
-//       [ Node({ value: Object({ firstValue: '123', secondValue: [ 'big', 'array' ] }), next: null }) ]
