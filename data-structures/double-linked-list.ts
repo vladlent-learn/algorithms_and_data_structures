@@ -78,4 +78,22 @@ export class DoubleLinkedList {
     this.length++;
     return this;
   }
+
+  get(index: number): Node {
+    if (index < 0 || index >= this.length) return undefined;
+
+    let currentNode;
+    if (index < this.length / 2) {
+      currentNode = this.head;
+      for (let i = 1; i <= index; i++) {
+        currentNode = currentNode.next;
+      }
+    } else {
+      currentNode = this.tail;
+      for (let i = this.length - 2; i >= index; i--) {
+        currentNode = currentNode.prev;
+      }
+    }
+    return currentNode;
+  }
 }

@@ -158,4 +158,24 @@ describe('DoubleLinkedList', () => {
       expect(list.tail).toBeNull();
     });
   });
+
+  describe('get()', () => {
+    it('should return item at provided index', () => {
+      expect(list.length).toBe(0);
+      addAllValuesToList();
+      expect(list.length).toBe(3);
+
+      expect(list.get(0)).toBe(list.head);
+      expect(list.get(2)).toBe(list.tail);
+      expect(list.get(1).value).toBe(secondValue);
+    });
+
+    it('should return undefined if provided index does`nt exist', () => {
+      expect(list.length).toBe(0);
+      expect(list.get(2)).toBeUndefined();
+      addAllValuesToList();
+      expect(list.get(12344123)).toBeUndefined();
+      expect(list.get(-5)).toBeUndefined();
+    });
+  });
 });
