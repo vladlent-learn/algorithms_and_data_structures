@@ -90,4 +90,72 @@ describe('DoubleLinkedList', () => {
       expect(list.length).toBe(0);
     });
   });
+
+  describe('unshift()', () => {
+    it('should add new value to the start of the list and make it the new head', () => {
+      expect(list.length).toBe(0);
+      expect(list.unshift(firstValue)).toBe(list);
+      expect(list.head.value).toBe(firstValue);
+      expect(list.head).toBe(list.tail);
+      expect(list.head.prev).toBeNull();
+      expect(list.head.next).toBeNull();
+      expect(list.length).toBe(1);
+
+      list.unshift(secondValue);
+
+      expect(list.head.value).toBe(secondValue);
+      expect(list.head.next.value).toBe(firstValue);
+      expect(list.tail.value).toBe(firstValue);
+      expect(list.tail.prev.value).toBe(secondValue);
+      expect(list.head.prev).toBeNull();
+      expect(list.tail.next).toBeNull();
+      expect(list.length).toBe(2);
+    });
+
+    it('should return this list', () => {
+      expect(list.unshift(123)).toBe(list);
+    });
+  });
+
+  describe('shift()', () => {
+    it('should remove first node from the list and return it', () => {
+      expect(list.length).toBe(0);
+      addAllValuesToList();
+      expect(list.length).toBe(3);
+
+      expect(list.head.value).toBe(firstValue);
+      expect(list.length).toBe(3);
+
+      const shiftedNode = list.shift();
+
+      expect(shiftedNode.value).toBe(firstValue);
+      expect(shiftedNode.next).toBeNull();
+      expect(shiftedNode.prev).toBeNull();
+
+      expect(list.head.value).toBe(secondValue);
+      expect(list.length).toBe(2);
+    });
+
+    it('should return undefined if the list is empty', () => {
+      expect(list.length).toBe(0);
+      expect(list.shift()).toBeUndefined();
+    });
+
+    it('should make list empty if list has only 1 item', () => {
+      expect(list.length).toBe(0);
+
+      list.unshift(firstValue);
+
+      expect(list.length).toBe(1);
+      expect(list.head.value).toBe(firstValue);
+      expect(list.head).toBe(list.tail);
+      expect(list.head.next).toBeNull();
+
+      list.shift();
+
+      expect(list.length).toBe(0);
+      expect(list.head).toBeNull();
+      expect(list.tail).toBeNull();
+    });
+  });
 });

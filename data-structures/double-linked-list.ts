@@ -39,9 +39,43 @@ export class DoubleLinkedList {
     } else {
       this.tail = oldTail.prev;
       this.tail.next = null;
+      oldTail.prev = null;
     }
     this.length--;
 
     return oldTail;
+  }
+
+  shift(): Node {
+    if (this.length === 0) {
+      return undefined;
+    }
+    const shiftedNode = this.head;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = shiftedNode.next;
+      this.head.prev = null;
+      shiftedNode.next = null;
+    }
+    this.length--;
+    return shiftedNode;
+  }
+
+  unshift(value: any): this {
+    const node = new Node(value);
+
+    if (this.length === 0) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      node.next = this.head;
+      this.head.prev = node;
+      this.head = node;
+    }
+    this.length++;
+    return this;
   }
 }
