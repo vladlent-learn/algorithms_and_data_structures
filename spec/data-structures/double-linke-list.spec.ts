@@ -178,4 +178,80 @@ describe('DoubleLinkedList', () => {
       expect(list.get(-5)).toBeUndefined();
     });
   });
+
+  describe('set()', () => {
+    it('should change value of the node at the provided index and return boolean to indicate whether operation was successful', () => {
+      const newValue = 'New val';
+      expect(list.length).toBe(0);
+
+      addAllValuesToList();
+
+      expect(list.length).toBe(3);
+      expect(list.set(1, newValue)).toBeTrue();
+      expect(list.get(1).value).toBe(newValue);
+
+      expect(list.set(12312, newValue)).toBeFalse();
+    });
+  });
+
+  describe('insert()', () => {
+    it('should insert new Node at provided index with provided value and return boolean to indicate if operation was successful', () => {
+      const insertOne = 1;
+      const insertTwo = '345534';
+      const insertThree = [null, undefined];
+
+      expect(list.length).toBe(0);
+      addAllValuesToList();
+      expect(list.length).toBe(3);
+
+      expect(list.insert(0, insertOne)).toBeTrue();
+      expect(list.head.value).toBe(insertOne);
+      expect(list.head.next).toBe(list.get(1));
+      expect(list.head.prev).toBeNull();
+      expect(list.length).toBe(4);
+
+      expect(list.insert(2, insertTwo)).toBeTrue();
+      expect(list.get(2).value).toBe(insertTwo);
+      expect(list.get(2).next.value).toBe(secondValue);
+      expect(list.get(2).prev.value).toBe(firstValue);
+      expect(list.length).toBe(5);
+
+      expect(list.insert(4, insertThree)).toBeTrue();
+      expect(list.tail.value).toBe(insertThree);
+      expect(list.get(4).next).toBe(list.tail);
+
+      expect(list.insert(10, 'random')).toBeFalse();
+      expect(list.insert(10, 'random')).toBeFalse();
+    });
+  });
+
+  describe('remove()', () => {
+    beforeEach(() => {
+      expect(list.length).toBe(0);
+      addAllValuesToList();
+      expect(list.length).toBe(3);
+    });
+
+    it('should remove the node at the provided index and return it', () => {
+      expect(list.remove(1).value).toBe(secondValue);
+
+      expect(list.get(1)).toBe(list.tail);
+      expect(list.get(1).prev).toBe(list.head);
+      expect(list.length).toBe(2);
+    });
+
+    it('should set new head if removing from 0 index', () => {
+      expect(list.remove(0).value).toBe(firstValue);
+      expect(list.length).toBe(2);
+      expect(list.head.value).toBe(secondValue);
+    });
+    it('should set new tail if removing from last index', () => {
+      expect(list.remove(2).value).toBe(thirdValue);
+      expect(list.length).toBe(2);
+      expect(list.tail.value).toBe(secondValue);
+    });
+    it('should return undefined if provided index doesn`t exist', () => {
+      expect(list.remove(234823904)).toBeUndefined();
+    });
+  });
 });

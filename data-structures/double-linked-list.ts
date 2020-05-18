@@ -96,4 +96,48 @@ export class DoubleLinkedList {
     }
     return currentNode;
   }
+
+  set(index: number, value: any): boolean {
+    const node = this.get(index);
+    if (node) {
+      node.value = value;
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  insert(index: number, value: any): boolean {
+    if (index < 0 || index >= this.length) return false;
+    if (index === 0) return !!this.unshift(value);
+    if (index === this.length - 1) return !!this.push(value);
+
+    const newNode = new Node(value);
+    const node = this.get(index);
+
+    newNode.prev = node.prev;
+    node.prev.next = newNode;
+    newNode.next = node;
+
+    this.length++;
+    return true;
+  }
+
+  remove(index: number): Node {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+
+    const node = this.get(index);
+    const beforeNode = node.prev;
+    const nextNode = node.next;
+
+    beforeNode.next = nextNode;
+    nextNode.prev = beforeNode;
+
+    node.next = node.prev = null;
+
+    this.length--;
+    return node;
+  }
 }
