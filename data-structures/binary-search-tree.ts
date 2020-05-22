@@ -9,11 +9,33 @@ export class BinarySearchTree {
   constructor(value?: number) {
     if (value) this.root = new Node(value);
   }
+
+  insert(value: number): this {
+    if (!this.root) {
+      this.root = new Node(value);
+    }
+
+    let currentNode = this.root;
+
+    while (true) {
+      if (currentNode.value === value) return this;
+
+      if (currentNode.value > value) {
+        if (!currentNode.left) {
+          currentNode.left = new Node(value);
+          return this;
+        } else {
+          currentNode = currentNode.left;
+        }
+      }
+      if (currentNode.value < value) {
+        if (!currentNode.right) {
+          currentNode.right = new Node(value);
+          return this;
+        } else {
+          currentNode = currentNode.right;
+        }
+      }
+    }
+  }
 }
-
-const tree = new BinarySearchTree(10);
-tree.root.right = new Node(15);
-tree.root.left = new Node(7);
-tree.root.left.right = new Node(9);
-
-console.log('tree >>>>', tree);

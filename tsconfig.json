@@ -2,7 +2,7 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "lib": ["ESNext"],
-    "types": ["node"],
+    "types": ["node", "jest"],
     "experimentalDecorators": true,
     "target": "ESNext"
   },

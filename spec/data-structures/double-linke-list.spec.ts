@@ -1,4 +1,3 @@
-import 'jasmine';
 import { DoubleLinkedList, Node } from '../../data-structures/double-linked-list';
 
 describe('Node', () => {
@@ -186,10 +185,10 @@ describe('DoubleLinkedList', () => {
       addAllValuesToList();
 
       expect(list.length).toBe(3);
-      expect(list.set(1, newValue)).toBeTrue();
+      expect(list.set(1, newValue)).toBe(true);
       expect(list.get(1).value).toBe(newValue);
 
-      expect(list.set(12312, newValue)).toBeFalse();
+      expect(list.set(12312, newValue)).toBe(false);
     });
   });
 
@@ -203,24 +202,24 @@ describe('DoubleLinkedList', () => {
       addAllValuesToList();
       expect(list.length).toBe(3);
 
-      expect(list.insert(0, insertOne)).toBeTrue();
+      expect(list.insert(0, insertOne)).toBe(true);
       expect(list.head.value).toBe(insertOne);
       expect(list.head.next).toBe(list.get(1));
       expect(list.head.prev).toBeNull();
       expect(list.length).toBe(4);
 
-      expect(list.insert(2, insertTwo)).toBeTrue();
+      expect(list.insert(2, insertTwo)).toBe(true);
       expect(list.get(2).value).toBe(insertTwo);
       expect(list.get(2).next.value).toBe(secondValue);
       expect(list.get(2).prev.value).toBe(firstValue);
       expect(list.length).toBe(5);
 
-      expect(list.insert(4, insertThree)).toBeTrue();
+      expect(list.insert(4, insertThree)).toBe(true);
       expect(list.tail.value).toBe(insertThree);
       expect(list.get(4).next).toBe(list.tail);
 
-      expect(list.insert(10, 'random')).toBeFalse();
-      expect(list.insert(10, 'random')).toBeFalse();
+      expect(list.insert(10, 'random')).toBe(false);
+      expect(list.insert(10, 'random')).toBe(false);
     });
   });
 
