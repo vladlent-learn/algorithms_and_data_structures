@@ -1,6 +1,5 @@
 import 'jasmine';
 import { DoubleLinkedList, Node } from '../../data-structures/double-linked-list';
-import { LinkedList } from '../../data-structures/linked-list';
 
 describe('Node', () => {
   it('should create a new Node with provided value and next === null', () => {
