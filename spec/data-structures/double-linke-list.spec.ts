@@ -87,6 +87,18 @@ describe('DoubleLinkedList', () => {
       expect(list.pop()).toBeUndefined();
       expect(list.length).toBe(0);
     });
+
+    it('should set head and tail to null if it`s the last item to remove', () => {
+      list.push(123);
+      expect(list.head).toBe(list.head);
+      expect(list.head.value).toBe(123);
+      expect(list.length).toBe(1);
+
+      list.pop();
+
+      expect(list.head).toBeNull();
+      expect(list.tail).toBeNull();
+    });
   });
 
   describe('unshift()', () => {

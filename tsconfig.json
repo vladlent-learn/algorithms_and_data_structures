@@ -2,9 +2,10 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "lib": ["ESNext"],
-    "types": ["node", "jest"],
+    "types": ["node", "jest", "jest-extended"],
     "experimentalDecorators": true,
     "target": "ESNext"
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "include": ["node_modules/jest-extended/types/**/*.d.ts"]
 }

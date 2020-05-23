@@ -1,7 +1,13 @@
 import { BinarySearchTree } from '../../data-structures/binary-search-tree';
 
 describe('BinarySearchTree', () => {
+  const values = [10, 13, 5, 2, 7, 11, 16];
+
   let tree: BinarySearchTree;
+
+  const fillTree = () => {
+    values.forEach(v => tree.insert(v));
+  };
 
   beforeEach(() => {
     tree = new BinarySearchTree();
@@ -50,6 +56,37 @@ describe('BinarySearchTree', () => {
 
     it('should return this', () => {
       expect(tree.insert(-5)).toBe(tree);
+    });
+  });
+
+  describe('contains()', () => {
+    it('should return false if tree is empty', () => {
+      expect(tree.contains(5)).toBe(false);
+    });
+
+    it('should return true if value is in the tree', () => {
+      tree.insert(10);
+      expect(tree.contains(10)).toBe(true);
+    });
+
+    it('should return false if provided value is not in the tree', () => {
+      fillTree();
+
+      expect(tree.contains(6)).toBe(false);
+      expect(tree.contains(14)).toBe(false);
+      expect(tree.contains(22)).toBe(false);
+      expect(tree.contains(-3)).toBe(false);
+      expect(tree.contains(9)).toBe(false);
+    });
+  });
+
+  describe('bfs()', () => {
+    it('should return an array of all values in a tree', () => {
+      fillTree();
+      expect(tree.bfs()).toIncludeAllMembers(values);
+    });
+    it('should return an empty array if tree is empty', () => {
+      expect(tree.bfs()).toBeArrayOfSize(0);
     });
   });
 });

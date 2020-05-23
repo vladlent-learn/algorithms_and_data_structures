@@ -38,4 +38,47 @@ export class BinarySearchTree {
       }
     }
   }
+
+  contains(value: number): boolean {
+    if (!this.root) return false;
+
+    let currentNode = this.root;
+    while (true) {
+      if (currentNode.value === value) return true;
+
+      if (currentNode.value > value) {
+        if (currentNode.left) {
+          currentNode = currentNode.left;
+        } else {
+          return false;
+        }
+      }
+
+      if (currentNode.value < value) {
+        if (currentNode.right) {
+          currentNode = currentNode.right;
+        } else {
+          return false;
+        }
+      }
+    }
+  }
+
+  /** Breadth First Search */
+  bfs(): number[] {
+    if (!this.root) return [];
+
+    const data = [];
+    const queue = [this.root];
+
+    while (queue.length > 0) {
+      const node = queue.shift();
+      data.push(node.value);
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+
+    return data;
+  }
 }
