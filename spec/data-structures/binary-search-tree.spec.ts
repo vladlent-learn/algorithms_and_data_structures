@@ -89,4 +89,33 @@ describe('BinarySearchTree', () => {
       expect(tree.bfs()).toBeArrayOfSize(0);
     });
   });
+
+  describe('dfsPreOrder()', () => {
+    it('should return an array of all values in a tree', () => {
+      fillTree();
+      expect(tree.dfsPreOrder()).toIncludeAllMembers(values);
+    });
+    it('should return an empty array if tree is empty', () => {
+      expect(tree.dfsPreOrder()).toBeArrayOfSize(0);
+    });
+  });
+
+  describe('dfsPostOrder()', () => {
+    it('should return an array of all values in a tree', () => {
+      fillTree();
+      expect(tree.dfsPostOrder()).toIncludeAllMembers(values);
+    });
+    it('should return an empty array if tree is empty', () => {
+      expect(tree.dfsPostOrder()).toBeArrayOfSize(0);
+    });
+  });
+  describe('dfsInOrder()', () => {
+    it('should return an array of all values in a tree', () => {
+      fillTree();
+      expect(tree.dfsInOrder()).toIncludeAllMembers(values);
+    });
+    it('should return an empty array if tree is empty', () => {
+      expect(tree.dfsInOrder()).toBeArrayOfSize(0);
+    });
+  });
 });
