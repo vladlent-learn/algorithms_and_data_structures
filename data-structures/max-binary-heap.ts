@@ -28,4 +28,42 @@ export class MaxBinaryHeap {
     }
     return this;
   }
+
+  extractMax(): number {
+    swap(this.values, 0, this.values.length - 1);
+    const root = this.values.pop();
+    let parentIndex = 0;
+
+    while (true) {
+      let [leftChild, rightChild] = MaxBinaryHeap.getChildrenIndexes(parentIndex);
+
+      if (
+        this.values[parentIndex] < this.values[leftChild] &&
+        this.values[parentIndex] < this.values[rightChild]
+      ) {
+        if (this.values[rightChild] > this.values[leftChild]) {
+          swap(this.values, parentIndex, rightChild);
+          parentIndex = rightChild;
+          continue;
+        } else {
+          swap(this.values, parentIndex, leftChild);
+          parentIndex = leftChild;
+          continue;
+        }
+      }
+
+      if (this.values[parentIndex] < this.values[leftChild]) {
+        swap(this.values, parentIndex, leftChild);
+        parentIndex = leftChild;
+        continue;
+      }
+      if (this.values[parentIndex] < this.values[rightChild]) {
+        swap(this.values, parentIndex, rightChild);
+        parentIndex = rightChild;
+        continue;
+      }
+
+      return root;
+    }
+  }
 }

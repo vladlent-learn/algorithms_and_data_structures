@@ -36,4 +36,12 @@ describe('MaxBinaryHeap', () => {
       expect(heap.values).toEqual([999, 55, 41, 39, 45, 12, 33, 18, 1, 27]);
     });
   });
+
+  describe('extractMax()', () => {
+    it('should return the root and update the tree', () => {
+      heap.values = [41, 39, 33, 18, 27, 12];
+      expect(heap.extractMax()).toBe(41);
+      expect(heap.values).toEqual([39, 27, 33, 18, 12]);
+    });
+  });
 });
