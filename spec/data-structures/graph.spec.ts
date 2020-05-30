@@ -50,13 +50,46 @@ describe('Graph', () => {
   });
 
   describe('removeEdge()', () => {
-    it('should ', () => {
+    it('should remove an edge between two provided vertices', () => {
       graph.adjacencyList = {
         Tokyo: ['Kyoto', 'Dallas'],
         Kyoto: ['Tokyo'],
         Dallas: ['Tokyo'],
         'New York': [],
       };
+
+      graph.removeEdge('Kyoto', 'Tokyo');
+
+      expect(graph.adjacencyList).toEqual({
+        Tokyo: ['Dallas'],
+        Kyoto: [],
+        Dallas: ['Tokyo'],
+        'New York': [],
+      });
+    });
+  });
+
+  describe('removeVertex()', () => {
+    it('should remove vertex and all its edges from adjacency list', () => {
+      graph.adjacencyList = {
+        Tokyo: ['Kyoto', 'Dallas'],
+        Kyoto: ['Tokyo'],
+        Dallas: ['Tokyo'],
+        'New York': [],
+      };
+
+      graph.removeVertex('Dallas');
+      expect(graph.adjacencyList).toEqual({
+        Tokyo: ['Kyoto'],
+        Kyoto: ['Tokyo'],
+        'New York': [],
+      });
+
+      graph.removeVertex('Tokyo');
+      expect(graph.adjacencyList).toEqual({
+        Kyoto: [],
+        'New York': [],
+      });
     });
   });
 });

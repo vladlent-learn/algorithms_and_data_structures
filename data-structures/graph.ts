@@ -19,5 +19,17 @@ export class Graph {
     }
   }
 
-  removeEdge(vertex1: Vertex, vertex2: Vertex) {}
+  removeEdge(vertex1: Vertex, vertex2: Vertex) {
+    this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(v => v !== vertex2);
+    this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(v => v !== vertex1);
+  }
+
+  removeVertex(v: Vertex) {
+    Object.keys(this.adjacencyList).forEach(vertex => {
+      if (vertex !== v) {
+        this.removeEdge(v, vertex);
+      }
+    });
+    delete this.adjacencyList[v];
+  }
 }
