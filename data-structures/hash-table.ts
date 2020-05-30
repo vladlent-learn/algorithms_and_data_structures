@@ -1,5 +1,3 @@
-import has = Reflect.has;
-
 export class HashTable {
   keyMap: [string, any][][];
 
@@ -44,7 +42,7 @@ export class HashTable {
 
     if (Array.isArray(this.keyMap[hash])) {
       const item = this.keyMap[hash].find(i => i[0] === key);
-      return item ? item[1] : undefined;
+      if (item) return item[1];
     }
   }
 
