@@ -70,4 +70,23 @@ export class Graph {
 
     return result;
   }
+
+  bfs(vertex: Vertex) {
+    const result = [];
+    const queue = [vertex];
+    const visited = { [vertex]: true };
+
+    while (queue.length) {
+      const currentVertex = queue.shift();
+      result.push(currentVertex);
+
+      this.adjacencyList[currentVertex].forEach(neighbor => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor);
+        }
+      });
+    }
+    return result;
+  }
 }

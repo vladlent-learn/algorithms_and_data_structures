@@ -156,4 +156,35 @@ describe('Graph', () => {
       expect(graph.depthFirstIterative('A')).toIncludeAllMembers(['A', 'C', 'E', 'F', 'D', 'B']);
     });
   });
+  describe('bfs()', () => {
+    it('should return list of all connected vertices starting from provided vertex', () => {
+      graph.adjacencyList = {
+        Tokyo: ['Kyoto', 'Dallas'],
+        Kyoto: ['Tokyo'],
+        Dallas: ['Tokyo'],
+        'New York': [],
+      };
+
+      expect(graph.bfs('Tokyo')).toIncludeAllMembers(['Tokyo', 'Kyoto', 'Dallas']);
+      expect(graph.bfs('New York')).toIncludeAllMembers(['New York']);
+    });
+    it('should return list of all connected vertices starting from provided vertex in correct order', () => {
+      graph.addVertex('A');
+      graph.addVertex('B');
+      graph.addVertex('C');
+      graph.addVertex('D');
+      graph.addVertex('E');
+      graph.addVertex('F');
+
+      graph.addEdge('A', 'B');
+      graph.addEdge('A', 'C');
+      graph.addEdge('B', 'D');
+      graph.addEdge('C', 'E');
+      graph.addEdge('D', 'E');
+      graph.addEdge('D', 'F');
+      graph.addEdge('E', 'F');
+
+      expect(graph.bfs('A')).toIncludeAllMembers(['A', 'C', 'E', 'F', 'D', 'B']);
+    });
+  });
 });
