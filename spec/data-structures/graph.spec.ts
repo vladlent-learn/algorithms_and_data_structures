@@ -92,4 +92,68 @@ describe('Graph', () => {
       });
     });
   });
+
+  describe('depthFirstRecursive()', () => {
+    it('should return list of all connected vertices starting from provided vertex', () => {
+      graph.adjacencyList = {
+        Tokyo: ['Kyoto', 'Dallas'],
+        Kyoto: ['Tokyo'],
+        Dallas: ['Tokyo'],
+        'New York': [],
+      };
+
+      expect(graph.depthFirstRecursive('Tokyo')).toIncludeAllMembers(['Tokyo', 'Kyoto', 'Dallas']);
+      expect(graph.depthFirstRecursive('New York')).toEqual(['New York']);
+    });
+    it('should return list of all connected vertices starting from provided vertex in correct order', () => {
+      graph.addVertex('A');
+      graph.addVertex('B');
+      graph.addVertex('C');
+      graph.addVertex('D');
+      graph.addVertex('E');
+      graph.addVertex('F');
+
+      graph.addEdge('A', 'B');
+      graph.addEdge('A', 'C');
+      graph.addEdge('B', 'D');
+      graph.addEdge('C', 'E');
+      graph.addEdge('D', 'E');
+      graph.addEdge('D', 'F');
+      graph.addEdge('E', 'F');
+
+      expect(graph.depthFirstRecursive('A')).toEqual(['A', 'B', 'D', 'E', 'C', 'F']);
+    });
+  });
+
+  describe('depthFirstIterative()', () => {
+    it('should return list of all connected vertices starting from provided vertex', () => {
+      graph.adjacencyList = {
+        Tokyo: ['Kyoto', 'Dallas'],
+        Kyoto: ['Tokyo'],
+        Dallas: ['Tokyo'],
+        'New York': [],
+      };
+
+      expect(graph.depthFirstIterative('Tokyo')).toIncludeAllMembers(['Tokyo', 'Kyoto', 'Dallas']);
+      expect(graph.depthFirstIterative('New York')).toIncludeAllMembers(['New York']);
+    });
+    it('should return list of all connected vertices starting from provided vertex in correct order', () => {
+      graph.addVertex('A');
+      graph.addVertex('B');
+      graph.addVertex('C');
+      graph.addVertex('D');
+      graph.addVertex('E');
+      graph.addVertex('F');
+
+      graph.addEdge('A', 'B');
+      graph.addEdge('A', 'C');
+      graph.addEdge('B', 'D');
+      graph.addEdge('C', 'E');
+      graph.addEdge('D', 'E');
+      graph.addEdge('D', 'F');
+      graph.addEdge('E', 'F');
+
+      expect(graph.depthFirstIterative('A')).toIncludeAllMembers(['A', 'C', 'E', 'F', 'D', 'B']);
+    });
+  });
 });
