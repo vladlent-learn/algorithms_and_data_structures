@@ -153,7 +153,7 @@ describe('Graph', () => {
       graph.addEdge('D', 'F');
       graph.addEdge('E', 'F');
 
-      expect(graph.depthFirstIterative('A')).toIncludeAllMembers(['A', 'C', 'E', 'F', 'D', 'B']);
+      expect(graph.depthFirstIterative('A')).toEqual(['A', 'C', 'E', 'F', 'D', 'B']);
     });
   });
   describe('bfs()', () => {
@@ -184,7 +184,7 @@ describe('Graph', () => {
       graph.addEdge('D', 'F');
       graph.addEdge('E', 'F');
 
-      expect(graph.bfs('A')).toIncludeAllMembers(['A', 'C', 'E', 'F', 'D', 'B']);
+      expect(graph.bfs('A')).toEqual(['A', 'B', 'C', 'D', 'E', 'F']);
     });
   });
 });
