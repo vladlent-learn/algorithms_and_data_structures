@@ -5,7 +5,7 @@ export class Node {
   constructor(public value: any, public priority: number) {}
 }
 
-export class MinBinaryHeap {
+export class PriorityQueue {
   values: Node[] = [];
 
   constructor() {}

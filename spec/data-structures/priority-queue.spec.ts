@@ -1,10 +1,10 @@
-import { MinBinaryHeap } from '../../data-structures/min-binary-heap';
+import { PriorityQueue } from '../../data-structures/priority-queue';
 
-describe('MinBinaryHeap', () => {
-  let heap: MinBinaryHeap;
+describe('PriorityQueue', () => {
+  let heap: PriorityQueue;
 
   beforeEach(() => {
-    heap = new MinBinaryHeap();
+    heap = new PriorityQueue();
   });
 
   describe('enqueue()', () => {
